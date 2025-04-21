@@ -1,0 +1,17 @@
+README.md
+pyproject.toml
+src/flet_desktop_drop/__init__.py
+src/flet_desktop_drop/flet_desktop_drop.py
+src/flet_desktop_drop.egg-info/PKG-INFO
+src/flet_desktop_drop.egg-info/SOURCES.txt
+src/flet_desktop_drop.egg-info/dependency_links.txt
+src/flet_desktop_drop.egg-info/requires.txt
+src/flet_desktop_drop.egg-info/top_level.txt
+src/flutter/flet_desktop_drop/CHANGELOG.md
+src/flutter/flet_desktop_drop/LICENSE
+src/flutter/flet_desktop_drop/README.md
+src/flutter/flet_desktop_drop/pubspec.lock
+src/flutter/flet_desktop_drop/pubspec.yaml
+src/flutter/flet_desktop_drop/lib/flet_desktop_drop.dart
+src/flutter/flet_desktop_drop/lib/src/create_control.dart
+src/flutter/flet_desktop_drop/lib/src/flet_desktop_drop.dart
