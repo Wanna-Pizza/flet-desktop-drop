@@ -13,9 +13,9 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://mydomain.dev"
-Documentation = "https://github.com/MyGithubAccount/flet-desktop-drop"
-Repository = "https://github.com/MyGithubAccount/flet-desktop-drop"
-Issues = "https://github.com/MyGithubAccount/flet-desktop-drop/issues"
+Documentation = "https://github.com/Wanna-Pizza/flet-desktop-drop"
+Repository = "https://github.com/Wanna-Pizza/flet-desktop-drop"
+Issues = "https://github.com/Wanna-Pizza/flet-desktop-drop/issues"
 
 [tool.setuptools.package-data]
 "flutter.flet_desktop_drop" = ["**/*"]

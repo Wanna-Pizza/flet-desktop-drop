@@ -11,7 +11,7 @@ Link to git repository:
 
 ```
 dependencies = [
-  "flet-desktop-drop @ git+https://github.com/MyGithubAccount/flet-desktop-drop",
+  "flet-desktop-drop @ git+https://github.com/Wanna-Pizza/flet-desktop-drop",
   "flet>=0.27.6",
 ]
 ```
@@ -34,4 +34,4 @@ flet build macos -v
 
 ## Documentation
 
-[Link to documentation](https://MyGithubAccount.github.io/flet-desktop-drop/)
+[Link to documentation](https://Wanna-Pizza.github.io/flet-desktop-drop/)

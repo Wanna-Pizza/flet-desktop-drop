@@ -1,8 +1,8 @@
 name: flet_desktop_drop
 description: Flet FletDesktopDrop control
-repository: https://github.com/MyGithubAccount/flet-desktop-drop/src/flutter/flet_desktop_drop
+repository: https://github.com/Wanna-Pizza/flet-desktop-drop/src/flutter/flet_desktop_drop
 version: 0.1.0
-homepage: https://github.com/MyGithubAccount/flet-desktop-drop
+homepage: https://github.com/Wanna-Pizza/flet-desktop-drop
 
 environment:
   sdk: '>=3.3.0 <4.0.0'
