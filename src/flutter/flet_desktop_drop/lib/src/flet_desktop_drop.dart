@@ -34,7 +34,7 @@ class _DropZoneControlState extends State<DropZoneControl> with FletStoreMixin {
   @override
   void initState() {
     super.initState();
-    _allowedFileTypes = widget.control.attrList("allowedFileTypes") ?? [];
+    _allowedFileTypes = widget.control.getString("allowedFileTypes") ?? [];
   }
 
   void onDragDone() {
