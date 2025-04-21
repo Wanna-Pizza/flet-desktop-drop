@@ -1,1 +1,5 @@
+build
 build/
+examples/flet_desktop_drop_example/build
+examples/flet_desktop_drop_example/build/
+venv
