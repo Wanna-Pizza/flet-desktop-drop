@@ -1,25 +1,11 @@
-import 'dart:convert';
-
 import 'package:flet/flet.dart';
 import 'package:flutter/widgets.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 
 class DropZoneControl extends StatefulWidget {
-  final Control? parent;
   final Control control;
-  final List<Control> children;
-  final bool parentDisabled;
-  final bool? parentAdaptive;
-  final FletControlBackend backend;
 
-  const DropZoneControl(
-      {super.key,
-      required this.parent,
-      required this.control,
-      required this.children,
-      required this.parentDisabled,
-      required this.parentAdaptive,
-      required this.backend});
+  const DropZoneControl({super.key, required this.control});
 
   @override
   State<DropZoneControl> createState() => _DropZoneControlState();
@@ -31,40 +17,34 @@ class _DropZoneControlState extends State<DropZoneControl> with FletStoreMixin {
 
   List<dynamic> _droppedFiles = [];
 
+  void sendEvent(String name, [dynamic data]) {
+    widget.control.triggerEvent(name, data);
+  }
+
   @override
   void initState() {
     super.initState();
-    _allowedFileTypes = widget.control.getString("allowedFileTypes") ?? [];
+    _allowedFileTypes =
+        widget.control.get<List<String>>("allowed_file_types", const [])!;
   }
 
   void onDragDone() {
-    widget.backend.triggerControlEvent(
-      widget.control.id,
-      "dropped",
-      jsonEncode({"files": _droppedFiles}),
-    );
+    sendEvent("dropped", {"files": _droppedFiles});
   }
 
   void onDragEntered() {
-    widget.backend.triggerControlEvent(widget.control.id, "entered", "");
+    sendEvent("entered");
   }
 
   void onDragExited() {
-    widget.backend.triggerControlEvent(widget.control.id, "exited", "");
+    sendEvent("exited");
   }
 
   @override
   Widget build(BuildContext context) {
-    debugPrint(
-        "DropZone build: ${widget.control.id} (${widget.control.hashCode})");
-    bool disabled = widget.control.isDisabled || widget.parentDisabled;
+    var content = widget.control.buildWidget("content");
 
-    var contentCtrls =
-        widget.children.where((c) => c.name == "content" && c.isVisible);
-
-    Widget child = contentCtrls.isNotEmpty
-        ? createControl(widget.control, contentCtrls.first.id, disabled)
-        : Container();
+    Widget? child = content;
 
     return withPageArgs((context, pageArgs) {
       Widget? dropZone;
@@ -97,12 +77,17 @@ class _DropZoneControlState extends State<DropZoneControl> with FletStoreMixin {
             onDragDone();
           }
         },
-        enable: !disabled,
-        child: child,
+        child: child ?? const SizedBox(),
       );
+      if (child == null) {
+        return const ErrorControl(
+            "The 'content' property is required for DropZoneControl.");
+      }
 
-      return constrainedControl(
-          context, dropZone, widget.parent, widget.control);
+      return ConstrainedControl(
+        control: widget.control,
+        child: dropZone,
+      );
     });
   }
 }
