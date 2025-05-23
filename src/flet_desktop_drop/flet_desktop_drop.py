@@ -3,7 +3,8 @@ from typing import Optional, Callable, Any
 
 from flet.controls.adaptive_control import AdaptiveControl
 from flet.controls.constrained_control import ConstrainedControl
-from flet.controls.control import Control,control
+from flet.controls.control import Control
+from flet.controls.base_control import control
 from flet.controls.alignment import Alignment
 from flet.controls.control_event import ControlEvent
 from flet.controls.types import OptionalControlEventCallable,OptionalEventCallable
@@ -25,7 +26,7 @@ class DropZone(ConstrainedControl, AdaptiveControl):
     """
     content: Optional[Control] = None
     alignment: Optional[Alignment] = None
-    on_dropped: OptionalEventCallable[DropEvent] = None
+    on_dropped: OptionalEventCallable["DropEvent"] = None
     on_exited: OptionalControlEventCallable = None
     on_entered: OptionalControlEventCallable = None
     allowed_file_types: Optional[list] = field(default_factory=list)
