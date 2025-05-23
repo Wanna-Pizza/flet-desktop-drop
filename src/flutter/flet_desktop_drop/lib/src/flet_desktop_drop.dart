@@ -46,48 +46,44 @@ class _DropZoneControlState extends State<DropZoneControl> with FletStoreMixin {
 
     Widget? child = content;
 
-    return withPageArgs((context, pageArgs) {
-      Widget? dropZone;
+    Widget? dropZone = DropTarget(
+      onDragEntered: (details) {
+        setState(() {
+          _dragging = true;
+        });
+        onDragEntered();
+      },
+      onDragExited: (details) {
+        setState(() {
+          _dragging = false;
+        });
+        onDragExited();
+      },
+      onDragDone: (details) {
+        setState(() {
+          _droppedFiles =
+              details.files.map((file) => file.path).where((filePath) {
+            if (_allowedFileTypes.isEmpty) return true;
 
-      dropZone = DropTarget(
-        onDragEntered: (details) {
-          setState(() {
-            _dragging = true;
-          });
-          onDragEntered();
-        },
-        onDragExited: (details) {
-          setState(() {
-            _dragging = false;
-          });
-          onDragExited();
-        },
-        onDragDone: (details) {
-          setState(() {
-            _droppedFiles =
-                details.files.map((file) => file.path).where((filePath) {
-              if (_allowedFileTypes.isEmpty) return true;
+            final extension = filePath.split('.').last.toLowerCase();
+            return _allowedFileTypes.contains(extension);
+          }).toList();
+          _dragging = false;
+        });
+        if (_droppedFiles.isNotEmpty) {
+          onDragDone();
+        }
+      },
+      child: child ?? const SizedBox(),
+    );
+    if (child == null) {
+      return const ErrorControl(
+          "The 'content' property is required for DropZoneControl.");
+    }
 
-              final extension = filePath.split('.').last.toLowerCase();
-              return _allowedFileTypes.contains(extension);
-            }).toList();
-            _dragging = false;
-          });
-          if (_droppedFiles.isNotEmpty) {
-            onDragDone();
-          }
-        },
-        child: child ?? const SizedBox(),
-      );
-      if (child == null) {
-        return const ErrorControl(
-            "The 'content' property is required for DropZoneControl.");
-      }
-
-      return ConstrainedControl(
-        control: widget.control,
-        child: dropZone,
-      );
-    });
+    return ConstrainedControl(
+      control: widget.control,
+      child: dropZone,
+    );
   }
 }

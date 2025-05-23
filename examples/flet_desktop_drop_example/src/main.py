@@ -2,7 +2,6 @@ import flet as ft
 
 from flet_desktop_drop import DropZone
 
-
 def main(page: ft.Page):
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
