@@ -3,7 +3,7 @@ name = "flet-desktop-drop"
 version = "0.26.0"
 description = "FletDesktopDrop control for Flet"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 authors = [
     { name = "Flet contributors", email = "you@example.com" }
 ]
